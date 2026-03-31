@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Uploading Page</title>
+</head>
+<body>
+    <h1>Upload JSON</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %}">
+                {{ message }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    <a href="{% url 'records:list' %}">Go to records list</a>
+</body>
+</html>
